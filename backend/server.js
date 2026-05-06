@@ -3,13 +3,16 @@ const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const doctorRoutes = require("./routes/doctorRoutes");
 const appointmentRoutes = require("./routes/appointmentRoutes");
+const authRoutes = require("./routes/authRoutes");
+const { protect } = require("./middleware/authMiddleware");
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use("/api/appointments", appointmentRoutes);
+app.use("/api/auth", authRoutes);
 connectDB();
-app.use("/api/doctors", doctorRoutes);
+app.use("/api/doctors", protect, doctorRoutes);
 app.get("/", (req, res) => {
     res.send("Backend Working Successfully");
 });

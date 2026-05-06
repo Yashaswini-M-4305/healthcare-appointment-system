@@ -6,9 +6,17 @@ const {
     getAllDoctors,
     addDoctor
 } = require("../controllers/doctorController");
+const {
+    protect,
+    adminOnly
+} = require("../middleware/authMiddleware");
 
 router.get("/", getAllDoctors);
-
-router.post("/", addDoctor);
+router.post(
+    "/",
+    protect,
+    adminOnly,
+    addDoctor
+);
 
 module.exports = router;
