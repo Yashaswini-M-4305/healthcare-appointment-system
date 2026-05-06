@@ -16,10 +16,15 @@ const doctorSchema = new mongoose.Schema({
         required: true
     },
 
-    rating: {
+    ratings: {
+    type: [Number],
+    default: []
+},
+
+    averageRating: {
         type: Number,
         default: 0
-    },
+},
 
     availableSlots: {
         type: [String],
