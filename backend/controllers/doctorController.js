@@ -1,6 +1,6 @@
 const Doctor = require("../models/Doctor");
 
-const getAllDoctors = async (req, res) => {
+const getDoctors = async (req, res) => {
     try {
         const doctors = await Doctor.find();
 
@@ -30,6 +30,6 @@ const addDoctor = async (req, res) => {
 };
 
 module.exports = {
-    getAllDoctors,
+    getDoctors,
     addDoctor
 };

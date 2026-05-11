@@ -3,15 +3,19 @@ const express = require("express");
 const router = express.Router();
 
 const {
-    getAllDoctors,
+    getDoctors,
     addDoctor
 } = require("../controllers/doctorController");
+
 const {
     protect,
     adminOnly
 } = require("../middleware/authMiddleware");
 
-router.get("/", getAllDoctors);
+// Patients/admins can view doctors
+router.get("/", protect, getDoctors);
+
+// Only admins can add doctors
 router.post(
     "/",
     protect,

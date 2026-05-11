@@ -52,11 +52,13 @@ const bookAppointment = async (req, res) => {
     }
     catch (error) {
 
-        res.status(500).json({
-            message: "Error booking appointment"
-        });
+    console.log(error);
 
-    }
+    res.status(500).json({
+        message: error.message
+    });
+
+}
 };
 
 const cancelAppointment = async (req, res) => {
